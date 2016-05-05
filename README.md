@@ -46,7 +46,7 @@ demo might be scrambled.
 
 * To workaround the QSPI flash might be programmed under windows by the 'stlink' 
 programmer software from ST Microelectronics 
- * for QSPI support enable **External Loader > N25Q128A_STM32F746G-DISCO** in the *stlink* Utility
+  * for QSPI support enable **External Loader > N25Q128A_STM32F746G-DISCO** in the *stlink* Utility
 
 * Or you adapt the STM32746G-Discovery/Demonstration software that QSPI "firmware update" 
 is possible via a SD card ;-)

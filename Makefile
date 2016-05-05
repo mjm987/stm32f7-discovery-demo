@@ -15,8 +15,9 @@ OBJS = $(SOURCES_S:.s=.o) $(SOURCES_C:.c=.o) $(SOURCES_CPP:.cpp=.o)
 
 ################
 # Defines
-
-DEFINES = -DSTM32 -DSTM32F7 -DSTM32F746xx -DSTM32F746NGHx -DSTM32F746G_DISCO
+#from Demonstration/SW4STM32/STM32F7-DISCO/.cproject
+DEFINES = -DSTM32F756xx -DUSE_HAL_DRIVER -DUSE_STM32746G_DISCOVERY
+#DEFINES = -DSTM32 -DSTM32F7 -DSTM32F746xx -DSTM32F746NGHx -DSTM32F746G_DISCO
 
 ################
 # Compiler/Assembler/Linker/etc
@@ -45,6 +46,7 @@ DEBUG_FLAGS = -Os
 
 CFLAGS = -std=c11
 CFLAGS += -Wall -Wextra --pedantic
+#-fmessage-length=0 -Wno-format -Wno-address -Wno-pointer-sign
 
 CFLAGS_EXTRA = -nostartfiles -fdata-sections -ffunction-sections
 CFLAGS_EXTRA += -Wl,--gc-sections -Wl,-Map=$(PROJECT).map

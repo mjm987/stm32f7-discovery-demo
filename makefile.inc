@@ -213,7 +213,6 @@ LIBRARIES += $(PROJ_DIR)/../Modules/audio_player/Addons/SpiritDSP_LoudnessContro
 LIBRARIES += $(PROJ_DIR)/../../../../Middlewares/ST/STemWin/Lib/STemWin528_CM7_OS_GCC_ot.a
 LIBRARIES += $(PROJ_DIR)/../STemWin_Addons/STM32746G_Discovery_STemWin_Addons_GCC.a
 
-
 SOURCES_S += $(PROJ_DIR)/../../../../Drivers/CMSIS/Device/ST/STM32F7xx/Source/Templates/gcc/startup_stm32f746xx.s
 
 LDSCRIPT = $(PROJ_DIR)/../SW4STM32/STM32F7-DISCO/STM32F746NGHx_FLASH.ld

@@ -26,20 +26,21 @@ echo >> makefile.inc
 
 # SOURCES_S
 # assembler sources (*.s) from IAR project are not suitable because gcc has different assembler syntax 
-# use startup code from gcc template available in STM32Cube
+# use startup code from gcc template (or from SW4STM32 - both are identical)
 echo 'SOURCES_S += $(PROJ_DIR)/../../../../Drivers/CMSIS/Device/ST/STM32F7xx/Source/Templates/gcc/startup_stm32f746xx.s' >> makefile.inc
+#echo 'SOURCES_S += $(PROJ_DIR)/../SW4STM32/startup_stm32f746xx.s' >> makefile.inc
 echo >> makefile.inc
 
 # use ldscript of another STM32Cube project
 echo 'LDSCRIPT = $(PROJ_DIR)/../SW4STM32/STM32F7-DISCO/STM32F746NGHx_FLASH.ld' >> makefile.inc
 
 ###
-# the discovery demo project does not reference c functions which need the c heap 
-# but if you reference c library function which needs heap, enable following lines to add/correct syscall.c containing _sbrk() from other STM32Cube project
-# mention that the c heap is not thread-save/reentrant which is a a problem when programming multitasking...
+# the discovery demo project need the c heap for unknown reason and thus neends a _sbrk() implementation
+# Remark: the C malloc() / free() are not thread-save (reentrant) which is a problem when programming multitasking...
+# following two syscalls.c are identical but gcc does not like the the 'asm("end")' at the 'extern char end' declaration
 #echo 'SOURCES_C += $(PROJ_DIR)/../../../STM32756G_EVAL/Applications/USB_Host/HID_RTOS/SW4STM32/syscalls.c' >> makefile.inc
-#sed  's/extern char end asm("end");/extern char end;/'   $DISCODEMO/../../../STM32756G_EVAL/Applications/USB_Host/HID_RTOS/SW4STM32/syscalls.c >syscalls.c
-#echo 'SOURCES_C += syscalls.c' >> makefile.inc
+sed  's/extern char end asm("end");/extern char end;/'   $DISCODEMO/../../../STM32756G_EVAL/Applications/USB_Host/HID_RTOS/SW4STM32/syscalls.c >syscalls.c
+echo 'SOURCES_C += syscalls.c' >> makefile.inc
 
 
 ####
